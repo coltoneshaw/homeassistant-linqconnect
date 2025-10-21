@@ -1,4 +1,4 @@
-.PHONY: start stop restart logs clean setup test-api
+.PHONY: start stop restart logs clean setup test-api release
 
 setup: start
 	@echo "🔧 Auto-configuring LinqConnect integration..."
@@ -33,6 +33,9 @@ test-api:
 	@source venv/bin/activate 2>/dev/null || python3 -m venv venv && source venv/bin/activate && pip install aiohttp > /dev/null
 	@source venv/bin/activate && python3 test_api.py
 
-dev: ## Start in development mode with logs
+dev:
 	@make start
 	@make logs
+
+release:
+	@./release.sh
