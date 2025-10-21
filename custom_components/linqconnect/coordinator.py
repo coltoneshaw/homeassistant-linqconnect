@@ -78,9 +78,9 @@ class LinqConnectDataUpdateCoordinator(DataUpdateCoordinator):
                     if not date_str:
                         continue
 
-                    # Parse the date (format: M/D/YYYY)
+                    # Parse the date (format: YYYY-MM-DD)
                     try:
-                        date_obj = datetime.strptime(date_str, "%m/%d/%Y").date()
+                        date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
                     except ValueError:
                         _LOGGER.warning("Could not parse date: %s", date_str)
                         continue
