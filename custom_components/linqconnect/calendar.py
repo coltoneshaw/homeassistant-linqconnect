@@ -130,24 +130,16 @@ class LinqConnectCalendar(CoordinatorEntity, CalendarEntity):
                     all_categories[category_name] = []
                 all_categories[category_name].extend(recipes)
 
-        # Format each category with item limits
-        MAX_ITEMS_PER_CATEGORY = 4
+        # Format each category
         for category_name, recipes in all_categories.items():
             recipe_names = [recipe["name"] for recipe in recipes if recipe.get("name")]
             if recipe_names:
                 # Add category header
                 description_parts.append(f"{category_name}:")
 
-                # Limit items shown
-                if len(recipe_names) > MAX_ITEMS_PER_CATEGORY:
-                    shown_items = recipe_names[:MAX_ITEMS_PER_CATEGORY]
-                    remaining = len(recipe_names) - MAX_ITEMS_PER_CATEGORY
-                    for item in shown_items:
-                        description_parts.append(f"  • {item}")
-                    description_parts.append(f"  ... and {remaining} more")
-                else:
-                    for item in recipe_names:
-                        description_parts.append(f"  • {item}")
+                # Show all items
+                for item in recipe_names:
+                    description_parts.append(f"  • {item}")
 
                 # Add blank line between categories
                 description_parts.append("")
