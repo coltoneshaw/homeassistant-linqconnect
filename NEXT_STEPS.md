@@ -123,7 +123,7 @@ Edit `custom_components/linqconnect/manifest.json`:
 ### Update README.md
 
 Replace placeholder URLs:
-- `https://github.com/yourusername/linqconnect-homeassistant`
+- `https://github.com/coltoneshaw/linqconnect-homeassistant`
 - With your actual GitHub username
 
 ## Notification Setup (For Users)
