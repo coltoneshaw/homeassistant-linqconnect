@@ -1,0 +1,43 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure LinqConnect",
+        "description": "Enter your school district and building information. You can find these IDs in the LinqConnect URL for your school.",
+        "data": {
+          "district_id": "District ID",
+          "building_id": "Building ID"
+        },
+        "data_description": {
+          "district_id": "The unique identifier for your school district (GUID format)",
+          "building_id": "The unique identifier for your school building (GUID format)"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid district or building ID. Please check and try again.",
+      "unknown": "An unexpected error occurred. Please try again."
+    },
+    "abort": {
+      "already_configured": "This LinqConnect account is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "LinqConnect Options",
+        "description": "Configure how the integration behaves.",
+        "data": {
+          "cutoff_time": "Cutoff Time (HH:MM)",
+          "update_interval": "Update Interval (minutes)",
+          "calendar_days": "Calendar Days Ahead"
+        },
+        "data_description": {
+          "cutoff_time": "Time after which to show the next school day's menu (e.g., 10:00)",
+          "update_interval": "How often to fetch new menu data (default: 180 minutes / 3 hours)",
+          "calendar_days": "How many days ahead to fetch menu data for calendar (default: 30)"
+        }
+      }
+    }
+  }
+}
