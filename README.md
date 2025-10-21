@@ -1,195 +1,137 @@
-# LinqConnect School Menus for Home Assistant
+# LinqConnect School Menus
 
-A Home Assistant integration for displaying school lunch and breakfast menus from LinqConnect.
+A Home Assistant integration that displays your school's breakfast and lunch menus from LinqConnect.
 
 ## Features
 
-- **Sensor Entities**: Display today's or tomorrow's breakfast and lunch menus
-- **Calendar Integration**: View upcoming menus in a calendar format
-- **Smart Timing**: Automatically switches to the next school day's menu after a configurable cutoff time (default: 10 AM)
-- **Organized Menu Display**: All menu items organized by category (Main Entrée, Grains, Vegetables, Fruits, Milk, Condiments)
-- **Theme Days**: Shows special theme days like "Taco Tuesday" or "Fun Friday"
-- **Automation Support**: Use sensor data to create notifications and automations
+- View menus in your Home Assistant calendar
+- Get daily notifications of tomorrow's menu
+- Display menus on dashboards
+- Support for multiple grade levels (K-8, K-12, Pre-K)
+- Automatically shows next school day's menu after 10 AM
 
 ## Installation
 
-### HACS (Recommended)
+### HACS
 
-1. Open HACS in Home Assistant
-2. Click on "Integrations"
-3. Click the three dots in the top right corner
-4. Select "Custom repositories"
-5. Add this repository URL: `https://github.com/coltoneshaw/homeassistant-linqconnect`
-6. Select "Integration" as the category
-7. Click "Add"
-8. Search for "LinqConnect School Menus" and install it
-9. Restart Home Assistant
+1. Add custom repository: `https://github.com/coltoneshaw/homeassistant-linqconnect`
+2. Select category: Integration
+3. Install and restart Home Assistant
 
-### Manual Installation
+### Manual
 
-1. Copy the `custom_components/linqconnect` directory to your Home Assistant's `custom_components` directory
-2. Restart Home Assistant
+Copy `custom_components/linqconnect` to your `config/custom_components` directory and restart.
 
-## Configuration
+## Setup
 
-### Finding Your IDs
+### Find Your IDs
 
-You'll need two IDs from LinqConnect:
+Your school's LinqConnect URL contains the IDs you need:
+```
+https://linqconnect.com/public/menu/XXXXX?buildingId=abc...&districtId=def...
+```
 
-1. Go to your school's LinqConnect menu page (e.g., `https://linqconnect.com/public/menu/XXXXX?buildingId=...`)
-2. Look at the URL parameters:
-   - `districtId` - Your district's unique identifier (GUID format)
-   - `buildingId` - Your school building's unique identifier (GUID format)
+Copy the `buildingId` and `districtId` values.
 
-You can also find these in the browser's developer tools network tab when loading the menu page.
+### Add Integration
 
-### Setup via UI
+Go to Settings → Devices & Services → Add Integration → Search "LinqConnect"
 
-1. Go to **Settings** → **Devices & Services**
-2. Click **+ Add Integration**
-3. Search for **LinqConnect School Menus**
-4. Enter your **District ID** and **Building ID**
-5. Click **Submit**
+Enter your District ID and Building ID, then select which menu plans to track (K-8, K-12, etc.).
 
-### Configuration Options
+## Notifications
 
-After setup, you can configure additional options:
+The easiest way to get daily menu notifications is using the included blueprint.
 
-- **Cutoff Time**: Time after which sensors show the next school day's menu (format: HH:MM, default: 10:00)
-- **Update Interval**: How often to fetch new data in minutes (default: 180 / 3 hours)
-- **Calendar Days Ahead**: How many days of menu data to fetch for the calendar (default: 30)
+### Import Blueprint
 
-To change options:
-1. Go to **Settings** → **Devices & Services**
-2. Find **LinqConnect School Menus**
-3. Click **Configure**
+Settings → Automations → Blueprints → Import Blueprint
 
-## Entities Created
+Paste this URL:
+```
+https://github.com/coltoneshaw/homeassistant-linqconnect/blob/main/blueprints/automation/linqconnect/daily_menu_notification.yaml
+```
 
-The integration creates the following entities:
+### Create Automation
 
-### Sensors
+Settings → Automations → Create Automation → Select "Daily School Menu Notification"
 
-- `sensor.linqconnect_breakfast` - Today's or tomorrow's breakfast menu
-- `sensor.linqconnect_lunch` - Today's or tomorrow's lunch menu
+Configure your notification time and device, then save. You'll get notifications Monday-Friday.
 
-#### Sensor Attributes
+## What Gets Created
 
-Each sensor includes the following attributes:
+**Sensors:**
+- `sensor.linqconnect_breakfast`
+- `sensor.linqconnect_lunch`
 
-- `theme_day` - Special theme name (e.g., "Taco Tuesday")
-- `menu_plan` - Menu plan name (e.g., "K-8 Lunch SY 25-26")
-- `main_entree` - List of main entrée options
-- `main_entree_formatted` - Comma-separated string of main entrées
-- `grain` - List of grain options
-- `vegetable` - List of vegetable options
-- `fruit` - List of fruit options
-- `milk` - List of milk options
-- `condiment` - List of condiments
-- `side_item` - List of side items
+**Calendars:**
+- `calendar.linqconnect_breakfast_calendar`
+- `calendar.linqconnect_lunch_calendar`
 
-### Calendar
+**Sensor attributes:**
+- `main_entree_formatted` - Comma-separated list of main dishes
+- `theme_day` - Special theme like "Taco Tuesday"
+- Individual categories: `grain`, `vegetable`, `fruit`, `milk`, `condiment`, `side_item`
 
-- `calendar.linqconnect_breakfast_calendar` - Breakfast menu calendar
-- `calendar.linqconnect_lunch_calendar` - Lunch menu calendar
+## Examples
 
-## Usage Examples
-
-### Display in Dashboard
-
-Add a markdown card to show today's lunch:
+### Simple Dashboard Card
 
 ```yaml
 type: markdown
 content: |
-  ## {{ states('sensor.linqconnect_lunch') }}
-
-  **Main Entrées:**
-  {% for item in state_attr('sensor.linqconnect_lunch', 'main_entree') %}
-  - {{ item }}
-  {% endfor %}
-
-  **Sides:**
-  {% for item in state_attr('sensor.linqconnect_lunch', 'vegetable') %}
-  - {{ item }}
-  {% endfor %}
-title: Today's Lunch
+  ## {{ states('sensor.linqconnect_lunch') or 'Tomorrow\'s Lunch' }}
+  {{ state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') }}
+title: School Lunch
 ```
 
-### Create Notification Automation
-
-Send a notification with tomorrow's lunch menu every evening:
+### Alert on Pizza Day
 
 ```yaml
 automation:
-  - alias: "Notify Tomorrow's Lunch"
+  - alias: "Pizza Day"
     trigger:
-      - platform: time
-        at: "19:00:00"
-    action:
-      - service: notify.mobile_app_your_phone
-        data:
-          title: "{{ state_attr('sensor.linqconnect_lunch', 'theme_day') or 'Tomorrow\\'s Lunch' }}"
-          message: "{{ state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') }}"
-```
-
-### Notify on Specific Menu Items
-
-Get notified when pizza is on the menu:
-
-```yaml
-automation:
-  - alias: "Pizza Day Alert"
-    trigger:
-      - platform: state
-        entity_id: sensor.linqconnect_lunch
+      platform: state
+      entity_id: sensor.linqconnect_lunch
     condition:
-      - condition: template
-        value_template: >
-          {{ 'pizza' in (state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') | lower) }}
+      condition: template
+      value_template: "{{ 'pizza' in (state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') | lower) }}"
     action:
-      - service: notify.family
-        data:
-          title: "🍕 Pizza Day!"
-          message: "It's pizza day at school tomorrow!"
+      service: notify.family
+      data:
+        message: "Pizza day tomorrow!"
 ```
 
-### Calendar View
+## Configuration
 
-Add the calendar entities to your Home Assistant calendar view to see the full month's menu at a glance.
+Settings → Devices & Services → LinqConnect → Configure
+
+Available options:
+- Menu plans to track
+- Cutoff time for switching to next day
+- Update interval
+- Calendar days ahead
 
 ## Troubleshooting
 
-### Integration won't load
+**No menu data?** Check if it's a weekend or holiday. Menu data is only available on school days.
 
-- Verify your District ID and Building ID are correct
-- Check Home Assistant logs for error messages
-- Ensure you have an internet connection
+**Wrong day showing?** Adjust the cutoff time in the configuration options.
 
-### No menu data showing
+**Integration won't load?** Verify your District ID and Building ID are correct.
 
-- Check that menu data is available on the LinqConnect website for your school
-- Verify the date range settings in options
-- Try reducing the "Calendar Days Ahead" value if you're getting timeout errors
+## Services
 
-### Sensors showing "No menu available"
+Force a manual update: Developer Tools → Actions → `linqconnect.force_update`
 
-- This is normal for weekends and school holidays
-- Check the calendar entities to see what dates have menu data
-- Verify the cutoff time setting if the wrong day is showing
+## Development
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+See [DEVELOPMENT.md](DEVELOPMENT.md) for local development setup.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues, questions, or feature requests, please [open an issue on GitHub](https://github.com/coltoneshaw/homeassistant-linqconnect/issues).
+MIT
 
 ## Disclaimer
 
-This integration is not affiliated with, endorsed by, or connected to LinqConnect or its parent company. Use at your own risk.
+Not affiliated with LinqConnect. This is an unofficial integration.

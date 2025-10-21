@@ -22,9 +22,11 @@ class LinqConnectDataUpdateCoordinator(DataUpdateCoordinator):
         hass: HomeAssistant,
         client: LinqConnectApiClient,
         update_interval: timedelta,
+        selected_menu_plans: list[str] | None = None,
     ) -> None:
         """Initialize the coordinator."""
         self.client = client
+        self.selected_menu_plans = selected_menu_plans or []
         super().__init__(
             hass,
             _LOGGER,
@@ -53,12 +55,20 @@ class LinqConnectDataUpdateCoordinator(DataUpdateCoordinator):
             "raw": raw_data,
         }
 
-        if not raw_data or "FamilyMenuSessions" not in raw_data:
-            _LOGGER.warning("No menu data found in API response")
+        if not raw_data:
+            _LOGGER.warning("No raw data from API")
             return processed
 
+        if "FamilyMenuSessions" not in raw_data:
+            _LOGGER.warning("No FamilyMenuSessions in API response. Keys found: %s", list(raw_data.keys()))
+            return processed
+
+        sessions = raw_data["FamilyMenuSessions"]
+        _LOGGER.debug("Processing %d menu sessions", len(sessions))
+
         for session in raw_data["FamilyMenuSessions"]:
-            session_name = session.get("ServingSessionKey", "").lower()
+            # Try both field names (API inconsistency)
+            session_name = session.get("ServingSession", session.get("ServingSessionKey", "")).lower()
 
             # Determine if this is breakfast or lunch
             if SESSION_BREAKFAST.lower() in session_name:
@@ -72,8 +82,14 @@ class LinqConnectDataUpdateCoordinator(DataUpdateCoordinator):
             for menu_plan in session.get("MenuPlans", []):
                 menu_plan_name = menu_plan.get("MenuPlanName", "Unknown")
 
+                # Filter by selected menu plans
+                if self.selected_menu_plans and menu_plan_name not in self.selected_menu_plans:
+                    continue
+
+                days = menu_plan.get("Days", [])
+
                 # Process each day
-                for day in menu_plan.get("Days", []):
+                for day in days:
                     date_str = day.get("Date")
                     if not date_str:
                         continue
@@ -81,7 +97,7 @@ class LinqConnectDataUpdateCoordinator(DataUpdateCoordinator):
                     # Parse the date (format: M/D/YYYY)
                     try:
                         date_obj = datetime.strptime(date_str, "%m/%d/%Y").date()
-                    except ValueError:
+                    except ValueError as e:
                         _LOGGER.warning("Could not parse date: %s", date_str)
                         continue
 
@@ -139,6 +155,13 @@ class LinqConnectDataUpdateCoordinator(DataUpdateCoordinator):
                         }
 
                     processed[meal_type][date_obj]["items"].extend(menu_items)
+
+        # Log summary
+        _LOGGER.info(
+            "Loaded %d breakfast and %d lunch menu dates",
+            len(processed["breakfast"]),
+            len(processed["lunch"]),
+        )
 
         return processed
 

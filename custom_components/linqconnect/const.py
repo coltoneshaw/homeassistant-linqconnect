@@ -11,6 +11,7 @@ API_FAMILY_MENU_MEALS = f"{API_BASE_URL}/FamilyMenuMeals"
 # Configuration Keys
 CONF_DISTRICT_ID = "district_id"
 CONF_BUILDING_ID = "building_id"
+CONF_MENU_PLANS = "menu_plans"
 CONF_CUTOFF_TIME = "cutoff_time"
 CONF_UPDATE_INTERVAL = "update_interval"
 CONF_CALENDAR_DAYS = "calendar_days"

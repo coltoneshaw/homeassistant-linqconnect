@@ -1,0 +1,113 @@
+blueprint:
+  name: Daily School Menu Notification
+  description: Send a daily notification with tomorrow's school menu (breakfast, lunch, or both)
+  domain: automation
+  source_url: https://github.com/coltoneshaw/homeassistant-linqconnect/blob/main/blueprints/automation/linqconnect/daily_menu_notification.yaml
+  input:
+    notify_time:
+      name: Notification Time
+      description: What time to send the notification each day
+      default: "18:00:00"
+      selector:
+        time: {}
+
+    notify_service:
+      name: Notification Service
+      description: The notification service to use (e.g., mobile_app_your_phone)
+      selector:
+        target:
+          entity:
+            - domain: notify
+
+    meal_type:
+      name: Meal Type
+      description: Which meal(s) to include in the notification
+      default: both
+      selector:
+        select:
+          options:
+            - label: Lunch Only
+              value: lunch
+            - label: Breakfast Only
+              value: breakfast
+            - label: Both Breakfast and Lunch
+              value: both
+
+    include_theme:
+      name: Include Theme Day
+      description: Show the theme day name (e.g., "Taco Tuesday") in notification
+      default: true
+      selector:
+        boolean: {}
+
+trigger:
+  - platform: time
+    at: !input notify_time
+
+condition:
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+
+action:
+  - choose:
+      # Both meals
+      - conditions:
+          - condition: template
+            value_template: "{{ meal_type == 'both' }}"
+        sequence:
+          - service: notify.{{ notify_service.entity_id.split('.')[1] }}
+            data:
+              title: >
+                {% if include_theme and state_attr('sensor.linqconnect_lunch', 'theme_day') %}
+                  🍽️ {{ state_attr('sensor.linqconnect_lunch', 'theme_day') }}
+                {% else %}
+                  🍽️ Tomorrow's School Menu
+                {% endif %}
+              message: >
+                🥐 Breakfast:
+                {{ state_attr('sensor.linqconnect_breakfast', 'main_entree_formatted') or 'Not available' }}
+
+                🍔 Lunch:
+                {{ state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') or 'Not available' }}
+
+      # Lunch only
+      - conditions:
+          - condition: template
+            value_template: "{{ meal_type == 'lunch' }}"
+        sequence:
+          - service: notify.{{ notify_service.entity_id.split('.')[1] }}
+            data:
+              title: >
+                {% if include_theme and state_attr('sensor.linqconnect_lunch', 'theme_day') %}
+                  🍔 {{ state_attr('sensor.linqconnect_lunch', 'theme_day') }}
+                {% else %}
+                  🍔 Tomorrow's Lunch
+                {% endif %}
+              message: "{{ state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') or 'Not available' }}"
+
+      # Breakfast only
+      - conditions:
+          - condition: template
+            value_template: "{{ meal_type == 'breakfast' }}"
+        sequence:
+          - service: notify.{{ notify_service.entity_id.split('.')[1] }}
+            data:
+              title: >
+                {% if include_theme and state_attr('sensor.linqconnect_breakfast', 'theme_day') %}
+                  🥐 {{ state_attr('sensor.linqconnect_breakfast', 'theme_day') }}
+                {% else %}
+                  🥐 Tomorrow's Breakfast
+                {% endif %}
+              message: "{{ state_attr('sensor.linqconnect_breakfast', 'main_entree_formatted') or 'Not available' }}"
+
+variables:
+  meal_type: !input meal_type
+  notify_service: !input notify_service
+  include_theme: !input include_theme
+
+mode: single

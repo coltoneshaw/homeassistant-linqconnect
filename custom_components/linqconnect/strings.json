@@ -12,10 +12,21 @@
           "district_id": "The unique identifier for your school district (GUID format)",
           "building_id": "The unique identifier for your school building (GUID format)"
         }
+      },
+      "select_plans": {
+        "title": "Select Menu Plans",
+        "description": "Choose which menu plans to track. Select all that apply to your student(s). Available plans: {available_plans}",
+        "data": {
+          "menu_plans": "Menu Plans"
+        },
+        "data_description": {
+          "menu_plans": "Select the menu plans for your student's grade level (K-8, K-12, Pre-K, etc.)"
+        }
       }
     },
     "error": {
       "invalid_auth": "Invalid district or building ID. Please check and try again.",
+      "no_menu_plans": "No menu plans found for this school. Please verify your district and building IDs.",
       "unknown": "An unexpected error occurred. Please try again."
     },
     "abort": {
@@ -28,11 +39,13 @@
         "title": "LinqConnect Options",
         "description": "Configure how the integration behaves.",
         "data": {
+          "menu_plans": "Menu Plans to Track",
           "cutoff_time": "Cutoff Time (HH:MM)",
           "update_interval": "Update Interval (minutes)",
           "calendar_days": "Calendar Days Ahead"
         },
         "data_description": {
+          "menu_plans": "Select which menu plans to track (K-8, K-12, Pre-K, etc.). Uncheck plans you don't need.",
           "cutoff_time": "Time after which to show the next school day's menu (e.g., 10:00)",
           "update_interval": "How often to fetch new menu data (default: 180 minutes / 3 hours)",
           "calendar_days": "How many days ahead to fetch menu data for calendar (default: 30)"

@@ -1,0 +1,21 @@
+services:
+  homeassistant:
+    container_name: homeassistant-linqconnect-test
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      # Mount the integration directly for live editing
+      - ./custom_components/linqconnect:/config/custom_components/linqconnect:ro
+      # Config directory for HA data
+      - ./volumes/ha:/config
+    environment:
+      - TZ=America/New_York
+      - DISABLE_ONBOARDING=true
+    ports:
+      - "8123:8123"
+    restart: unless-stopped
+    networks:
+      - ha-test
+
+networks:
+  ha-test:
+    driver: bridge

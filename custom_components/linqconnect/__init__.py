@@ -13,6 +13,7 @@ from .api import LinqConnectApiClient
 from .const import (
     CONF_BUILDING_ID,
     CONF_DISTRICT_ID,
+    CONF_MENU_PLANS,
     CONF_UPDATE_INTERVAL,
     DEFAULT_UPDATE_INTERVAL,
     DOMAIN,
@@ -30,6 +31,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     district_id = entry.data[CONF_DISTRICT_ID]
     building_id = entry.data[CONF_BUILDING_ID]
+    selected_menu_plans = entry.data.get(CONF_MENU_PLANS, [])
     update_interval = entry.options.get(
         CONF_UPDATE_INTERVAL, DEFAULT_UPDATE_INTERVAL
     )
@@ -45,6 +47,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass,
         client=client,
         update_interval=timedelta(minutes=update_interval),
+        selected_menu_plans=selected_menu_plans,
     )
 
     # Fetch initial data
@@ -56,6 +59,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Register update listener for options changes
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
+
+    # Register force update service
+    async def async_force_update(call):
+        """Handle force update service call."""
+        _LOGGER.info("Force update requested")
+        await coordinator.async_request_refresh()
+
+    hass.services.async_register(DOMAIN, "force_update", async_force_update)
 
     return True
 

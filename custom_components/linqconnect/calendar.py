@@ -110,12 +110,14 @@ class LinqConnectCalendar(CoordinatorEntity, CalendarEntity):
         if not items:
             return None
 
-        # Build event summary
-        summary = f"{self._meal_type.title()}"
+        # Build event summary with emoji
+        emoji = "🥐" if self._meal_type == SENSOR_BREAKFAST else "🍔"
         if theme:
-            summary = f"{theme} - {summary}"
+            summary = f"{emoji} {theme}"
+        else:
+            summary = f"{emoji} {self._meal_type.title()}"
 
-        # Build event description with all menu items organized by category
+        # Build clean event description
         description_parts = []
 
         # Combine all categories from all menu items
@@ -126,28 +128,40 @@ class LinqConnectCalendar(CoordinatorEntity, CalendarEntity):
                     all_categories[category_name] = []
                 all_categories[category_name].extend(recipes)
 
-        # Format each category
+        # Format each category with item limits
+        MAX_ITEMS_PER_CATEGORY = 4
         for category_name, recipes in all_categories.items():
             recipe_names = [recipe["name"] for recipe in recipes if recipe.get("name")]
             if recipe_names:
-                description_parts.append(f"**{category_name}**")
-                for recipe_name in recipe_names:
-                    description_parts.append(f"• {recipe_name}")
-                description_parts.append("")  # Empty line between categories
+                # Add category header
+                description_parts.append(f"{category_name}:")
+
+                # Limit items shown
+                if len(recipe_names) > MAX_ITEMS_PER_CATEGORY:
+                    shown_items = recipe_names[:MAX_ITEMS_PER_CATEGORY]
+                    remaining = len(recipe_names) - MAX_ITEMS_PER_CATEGORY
+                    for item in shown_items:
+                        description_parts.append(f"  • {item}")
+                    description_parts.append(f"  ... and {remaining} more")
+                else:
+                    for item in recipe_names:
+                        description_parts.append(f"  • {item}")
+
+                # Add blank line between categories
+                description_parts.append("")
 
         description = "\n".join(description_parts)
 
-        # Set event times based on meal type
-        if self._meal_type == SENSOR_BREAKFAST:
-            start_time = datetime.combine(date, datetime.min.time().replace(hour=7, minute=30))
-            end_time = datetime.combine(date, datetime.min.time().replace(hour=8, minute=30))
-        else:  # Lunch
-            start_time = datetime.combine(date, datetime.min.time().replace(hour=11, minute=30))
-            end_time = datetime.combine(date, datetime.min.time().replace(hour=12, minute=30))
+        # Make it an all-day event
+        from homeassistant.util import dt as dt_util
+
+        # All-day events need start and end dates (not datetimes)
+        start_datetime = dt_util.start_of_local_day(datetime.combine(date, datetime.min.time()))
+        end_datetime = dt_util.start_of_local_day(datetime.combine(date + timedelta(days=1), datetime.min.time()))
 
         return CalendarEvent(
-            start=start_time,
-            end=end_time,
+            start=start_datetime.date(),
+            end=end_datetime.date(),
             summary=summary,
             description=description,
         )

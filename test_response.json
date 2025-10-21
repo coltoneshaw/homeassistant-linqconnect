@@ -2984,6 +2984,28 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     }
@@ -3170,6 +3192,28 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     }
@@ -3344,6 +3388,28 @@
                             {
                               "Name": "Total Carbohydrate",
                               "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
                               "HasMissingNutrients": false,
                               "Unit": "g",
                               "Abbreviation": "Carb"
@@ -3542,6 +3608,28 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     }
@@ -3717,6 +3805,28 @@
                             {
                               "Name": "Total Carbohydrate",
                               "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
                               "HasMissingNutrients": false,
                               "Unit": "g",
                               "Abbreviation": "Carb"
@@ -3915,6 +4025,28 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     }
@@ -4101,6 +4233,28 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     }
@@ -4276,6 +4430,28 @@
                             {
                               "Name": "Total Carbohydrate",
                               "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
                               "HasMissingNutrients": false,
                               "Unit": "g",
                               "Abbreviation": "Carb"
@@ -6498,6 +6674,29 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "c34a0de2-afdc-ee11-a71c-85861153a759",
+                          "RecipeIdentifier": "R-E3017",
+                          "RecipeName": "Ants on a Log Box",
+                          "ServingSize": "Bento Box",
+                          "GramPerServing": 193.12425,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 70,
+                              "HasMissingNutrients": true,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8c71dba1-79cf-eb11-a2c4-f81ec5475527",
+                            "8d71dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     },
@@ -6629,6 +6828,28 @@
                           "ItemId": "290ab258-edeb-eb11-a2c6-9df67c1af69f",
                           "RecipeIdentifier": "R-M1001",
                           "RecipeName": "Ice Cold Chocolate Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "6776027a-f09a-f011-a46a-42010a0b0046",
+                          "RecipeIdentifier": "61005",
+                          "RecipeName": "Flavor of the Month -  Orange Cream Milk",
                           "ServingSize": "Each",
                           "GramPerServing": 226.796,
                           "Nutrients": [
@@ -11038,6 +11259,28 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     },
@@ -11239,6 +11482,28 @@
                             {
                               "Name": "Total Carbohydrate",
                               "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
                               "HasMissingNutrients": false,
                               "Unit": "g",
                               "Abbreviation": "Carb"
@@ -11496,6 +11761,28 @@
                           "ReligiousRestrictions": [],
                           "DietaryRestrictions": [],
                           "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
                         }
                       ]
                     },
@@ -11719,6 +12006,28 @@
                             {
                               "Name": "Total Carbohydrate",
                               "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
                               "HasMissingNutrients": false,
                               "Unit": "g",
                               "Abbreviation": "Carb"
@@ -11981,6 +12290,28 @@
                             {
                               "Name": "Total Carbohydrate",
                               "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
                               "HasMissingNutrients": false,
                               "Unit": "g",
                               "Abbreviation": "Carb"
@@ -12284,6 +12615,28 @@
                             {
                               "Name": "Total Carbohydrate",
                               "Value": 20,
+                              "HasMissingNutrients": false,
+                              "Unit": "g",
+                              "Abbreviation": "Carb"
+                            }
+                          ],
+                          "Allergens": [
+                            "8871dba1-79cf-eb11-a2c4-f81ec5475527"
+                          ],
+                          "ReligiousRestrictions": [],
+                          "DietaryRestrictions": [],
+                          "HasNutrients": true
+                        },
+                        {
+                          "ItemId": "dba5aa5e-edeb-eb11-a2c6-9df67c1af69f",
+                          "RecipeIdentifier": "61004",
+                          "RecipeName": "Flavor of the Month: Vanilla Milk",
+                          "ServingSize": "Each",
+                          "GramPerServing": 226.796,
+                          "Nutrients": [
+                            {
+                              "Name": "Total Carbohydrate",
+                              "Value": 27,
                               "HasMissingNutrients": false,
                               "Unit": "g",
                               "Abbreviation": "Carb"
