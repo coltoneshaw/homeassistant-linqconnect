@@ -119,7 +119,22 @@ class LinqConnectMenuSensor(CoordinatorEntity, SensorEntity):
     def _get_relevant_menu(self) -> dict[str, Any] | None:
         """Get the menu for today or tomorrow based on cutoff time."""
         target_date = self._get_target_date()
-        return self.coordinator.get_menu_for_date(self._meal_type, target_date)
+        _LOGGER.debug(
+            "Looking up %s menu for date: %s",
+            self._meal_type,
+            target_date,
+        )
+        menu = self.coordinator.get_menu_for_date(self._meal_type, target_date)
+        if menu:
+            _LOGGER.debug("Found menu for %s: %s", target_date, menu.get("theme"))
+        else:
+            _LOGGER.warning(
+                "No menu found for %s on %s. Available dates: %s",
+                self._meal_type,
+                target_date,
+                sorted(self.coordinator.data.get(self._meal_type, {}).keys()) if self.coordinator.data else "No data",
+            )
+        return menu
 
     def _get_target_date(self) -> datetime.date:
         """Determine which date's menu to show based on cutoff time."""
