@@ -13,11 +13,10 @@ blueprint:
 
     notify_service:
       name: Notification Service
-      description: The notification service to use (e.g., mobile_app_your_phone)
+      description: Select the notification service to use
       selector:
-        target:
-          entity:
-            - domain: notify
+        entity:
+          domain: notify
 
     meal_type:
       name: Meal Type
@@ -60,7 +59,7 @@ action:
           - condition: template
             value_template: "{{ meal_type == 'both' }}"
         sequence:
-          - service: notify.{{ notify_service.entity_id.split('.')[1] }}
+          - service: "{{ notify_service }}"
             data:
               title: >
                 {% if include_theme and state_attr('sensor.linqconnect_lunch', 'theme_day') %}
@@ -80,7 +79,7 @@ action:
           - condition: template
             value_template: "{{ meal_type == 'lunch' }}"
         sequence:
-          - service: notify.{{ notify_service.entity_id.split('.')[1] }}
+          - service: "{{ notify_service }}"
             data:
               title: >
                 {% if include_theme and state_attr('sensor.linqconnect_lunch', 'theme_day') %}
@@ -95,7 +94,7 @@ action:
           - condition: template
             value_template: "{{ meal_type == 'breakfast' }}"
         sequence:
-          - service: notify.{{ notify_service.entity_id.split('.')[1] }}
+          - service: "{{ notify_service }}"
             data:
               title: >
                 {% if include_theme and state_attr('sensor.linqconnect_breakfast', 'theme_day') %}
