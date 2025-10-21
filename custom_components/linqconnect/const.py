@@ -15,11 +15,13 @@ CONF_MENU_PLANS = "menu_plans"
 CONF_CUTOFF_TIME = "cutoff_time"
 CONF_UPDATE_INTERVAL = "update_interval"
 CONF_CALENDAR_DAYS = "calendar_days"
+CONF_CALENDAR_LINE_BREAK = "calendar_line_break"
 
 # Defaults
 DEFAULT_CUTOFF_TIME = time(10, 0)  # 10:00 AM
 DEFAULT_UPDATE_INTERVAL = 180  # 3 hours in minutes
 DEFAULT_CALENDAR_DAYS = 30  # Days ahead to fetch
+DEFAULT_CALENDAR_LINE_BREAK = "<br>"  # Default to HTML breaks for compatibility
 
 # Sensor Configuration
 SENSOR_BREAKFAST = "breakfast"

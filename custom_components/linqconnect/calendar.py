@@ -13,6 +13,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import (
     ATTRIBUTION,
+    CONF_CALENDAR_LINE_BREAK,
+    DEFAULT_CALENDAR_LINE_BREAK,
     DOMAIN,
     SENSOR_BREAKFAST,
     SENSOR_LUNCH,
@@ -150,7 +152,9 @@ class LinqConnectCalendar(CoordinatorEntity, CalendarEntity):
                 # Add blank line between categories
                 description_parts.append("")
 
-        description = "\n".join(description_parts)
+        # Get line break preference from options
+        line_break = self._entry.options.get(CONF_CALENDAR_LINE_BREAK, DEFAULT_CALENDAR_LINE_BREAK)
+        description = line_break.join(description_parts)
 
         # Make it an all-day event
         from homeassistant.util import dt as dt_util

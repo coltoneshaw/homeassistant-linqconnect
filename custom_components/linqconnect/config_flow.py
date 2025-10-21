@@ -17,11 +17,13 @@ from .api import ApiClientError, LinqConnectApiClient
 from .const import (
     CONF_BUILDING_ID,
     CONF_CALENDAR_DAYS,
+    CONF_CALENDAR_LINE_BREAK,
     CONF_CUTOFF_TIME,
     CONF_DISTRICT_ID,
     CONF_MENU_PLANS,
     CONF_UPDATE_INTERVAL,
     DEFAULT_CALENDAR_DAYS,
+    DEFAULT_CALENDAR_LINE_BREAK,
     DEFAULT_CUTOFF_TIME,
     DEFAULT_UPDATE_INTERVAL,
     DOMAIN,
@@ -247,6 +249,12 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                     CONF_CALENDAR_DAYS, DEFAULT_CALENDAR_DAYS
                 ),
             ): cv.positive_int,
+            vol.Optional(
+                CONF_CALENDAR_LINE_BREAK,
+                default=self.config_entry.options.get(
+                    CONF_CALENDAR_LINE_BREAK, DEFAULT_CALENDAR_LINE_BREAK
+                ),
+            ): cv.string,
         })
 
         options_schema = vol.Schema(schema_dict)

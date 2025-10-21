@@ -42,13 +42,15 @@
           "menu_plans": "Menu Plans to Track",
           "cutoff_time": "Cutoff Time (HH:MM)",
           "update_interval": "Update Interval (minutes)",
-          "calendar_days": "Calendar Days Ahead"
+          "calendar_days": "Calendar Days Ahead",
+          "calendar_line_break": "Calendar Line Break"
         },
         "data_description": {
           "menu_plans": "Select which menu plans to track (K-8, K-12, Pre-K, etc.). Uncheck plans you don't need.",
           "cutoff_time": "Time after which to show the next school day's menu (e.g., 10:00)",
           "update_interval": "How often to fetch new menu data (default: 180 minutes / 3 hours)",
-          "calendar_days": "How many days ahead to fetch menu data for calendar (default: 30)"
+          "calendar_days": "How many days ahead to fetch menu data for calendar (default: 30)",
+          "calendar_line_break": "Character(s) to use for line breaks in calendar descriptions (default: <br> for HTML, use \\n for plain text)"
         }
       }
     }

@@ -73,9 +73,9 @@ Configure your notification time and device, then save. You'll get notifications
 - `theme_day` - Special theme like "Taco Tuesday"
 - Individual categories: `grain`, `vegetable`, `fruit`, `milk`, `condiment`, `side_item`
 
-## Examples
+## Dashboard Examples
 
-### Simple Dashboard Card
+### Quick Lunch Display
 
 ```yaml
 type: markdown
@@ -85,7 +85,63 @@ content: |
 title: School Lunch
 ```
 
-### Alert on Pizza Day
+### Full Menu Card
+
+```yaml
+type: markdown
+content: |
+  ## 🍔 {{ state_attr('sensor.linqconnect_lunch', 'theme_day') or 'Lunch Menu' }}
+
+  **Main Entrées:**
+  {% for item in state_attr('sensor.linqconnect_lunch', 'main_entree') or [] %}
+  - {{ item }}
+  {% endfor %}
+
+  **Vegetables:**
+  {% for item in state_attr('sensor.linqconnect_lunch', 'vegetable') or [] %}
+  - {{ item }}
+  {% endfor %}
+
+  **Fruit:**
+  {% for item in state_attr('sensor.linqconnect_lunch', 'fruit') or [] %}
+  - {{ item }}
+  {% endfor %}
+title: Today's Lunch Menu
+```
+
+### Both Breakfast and Lunch
+
+```yaml
+type: vertical-stack
+cards:
+  - type: markdown
+    content: |
+      ## 🥐 Breakfast
+      {{ state_attr('sensor.linqconnect_breakfast', 'main_entree_formatted') or 'No menu available' }}
+    title: "{{ state_attr('sensor.linqconnect_breakfast', 'theme_day') or 'Breakfast' }}"
+
+  - type: markdown
+    content: |
+      ## 🍔 Lunch
+      {{ state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') or 'No menu available' }}
+    title: "{{ state_attr('sensor.linqconnect_lunch', 'theme_day') or 'Lunch' }}"
+```
+
+### Entity Card (Simple)
+
+```yaml
+type: entities
+entities:
+  - entity: sensor.linqconnect_breakfast
+    name: Breakfast
+  - entity: sensor.linqconnect_lunch
+    name: Lunch
+title: School Menus
+```
+
+## Automation Examples
+
+### Pizza Day Alert
 
 ```yaml
 automation:
@@ -100,6 +156,24 @@ automation:
       service: notify.family
       data:
         message: "Pizza day tomorrow!"
+```
+
+### Morning Menu Reminder
+
+```yaml
+automation:
+  - alias: "Morning Lunch Reminder"
+    trigger:
+      platform: time
+      at: "07:00:00"
+    condition:
+      condition: time
+        weekday: [mon, tue, wed, thu, fri]
+    action:
+      service: notify.mobile_app_phone
+      data:
+        title: "{{ state_attr('sensor.linqconnect_lunch', 'theme_day') or 'Today\'s Lunch' }}"
+        message: "{{ state_attr('sensor.linqconnect_lunch', 'main_entree_formatted') }}"
 ```
 
 ## Configuration
