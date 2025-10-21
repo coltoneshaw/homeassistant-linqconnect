@@ -19,7 +19,7 @@ A Home Assistant integration for displaying school lunch and breakfast menus fro
 2. Click on "Integrations"
 3. Click the three dots in the top right corner
 4. Select "Custom repositories"
-5. Add this repository URL: `https://github.com/coltoneshaw/linqconnect-homeassistant`
+5. Add this repository URL: `https://github.com/coltoneshaw/homeassistant-linqconnect`
 6. Select "Integration" as the category
 7. Click "Add"
 8. Search for "LinqConnect School Menus" and install it
@@ -188,7 +188,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Support
 
-For issues, questions, or feature requests, please [open an issue on GitHub](https://github.com/coltoneshaw/linqconnect-homeassistant/issues).
+For issues, questions, or feature requests, please [open an issue on GitHub](https://github.com/coltoneshaw/homeassistant-linqconnect/issues).
 
 ## Disclaimer
 

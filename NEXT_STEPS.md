@@ -73,7 +73,7 @@ git add .
 git commit -m "Initial release of LinqConnect Home Assistant integration"
 
 # Create GitHub repo (via GitHub web UI or CLI)
-gh repo create linqconnect-homeassistant --public --source=. --remote=origin
+gh repo create homeassistant-linqconnect --public --source=. --remote=origin
 
 # Push to GitHub
 git push -u origin main
@@ -115,15 +115,15 @@ Edit `custom_components/linqconnect/manifest.json`:
 ```json
 {
   "codeowners": ["@yourgithubusername"],
-  "documentation": "https://github.com/yourgithubusername/linqconnect-homeassistant",
-  "issue_tracker": "https://github.com/yourgithubusername/linqconnect-homeassistant/issues"
+  "documentation": "https://github.com/yourgithubusername/homeassistant-linqconnect",
+  "issue_tracker": "https://github.com/yourgithubusername/homeassistant-linqconnect/issues"
 }
 ```
 
 ### Update README.md
 
 Replace placeholder URLs:
-- `https://github.com/coltoneshaw/linqconnect-homeassistant`
+- `https://github.com/coltoneshaw/homeassistant-linqconnect`
 - With your actual GitHub username
 
 ## Notification Setup (For Users)

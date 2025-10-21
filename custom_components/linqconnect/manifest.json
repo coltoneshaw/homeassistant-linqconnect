@@ -3,10 +3,10 @@
   "name": "LinqConnect School Menus",
   "codeowners": ["@coltoneshaw"],
   "config_flow": true,
-  "documentation": "https://github.com/coltoneshaw/linqconnect-homeassistant",
+  "documentation": "https://github.com/coltoneshaw/homeassistant-linqconnect",
   "integration_type": "service",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/coltoneshaw/linqconnect-homeassistant/issues",
+  "issue_tracker": "https://github.com/coltoneshaw/homeassistant-linqconnect/issues",
   "requirements": [],
   "version": "1.0.0"
 }
